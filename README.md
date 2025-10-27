@@ -1,6 +1,6 @@
 # Markdown-server
 
-Markdown-server 提供了Markdown的数学公式 `LaTex`，以及流程图`yUML`服务端渲染支持。
+Markdown-server 提供了Markdown的数学公式 `LaTex`、流程图 `yUML` 以及 `Mermaid` 服务端渲染支持。
 
 ## 如何使用
 
@@ -17,6 +17,7 @@ Markdown-server 提供了Markdown的数学公式 `LaTex`，以及流程图`yUML`
 
 - [（本地）LaTeX 数学公式](http://localhost:8001/?tex=x%20%3D%20%7B-b%20%5Cpm%20%5Csqrt%7Bb%5E2-4ac%7D%20%5Cover%202a%7D.)
 - [（本地）yUML 流程图](http://localhost:8001/?yuml=%2F%2F%20%7Btype%3Aactivity%7D%0A%2F%2F%20%7Bgenerate%3Atrue%7D%0A%0A(start)-%3E%3Ca%3E%5Bkettle%20empty%5D-%3E(Fill%20Kettle)-%3E%7Cb%7C%0A%3Ca%3E%5Bkettle%20full%5D-%3E%7Cb%7C-%3E(Boil%20Kettle)-%3E%7Cc%7C%0A%7Cb%7C-%3E(Add%20Tea%20Bag)-%3E(Add%20Milk)-%3E%7Cc%7C-%3E(Pour%20Water)%0A(Pour%20Water)-%3E(end))
+- [（本地）Mermaid 流程图](http://localhost:8001/?mermaid=graph%20TD%0A%20%20%20%20A%5BStart%5D%20--%3E%20B%7BIs%20it%20working%3F%7D%0A%20%20%20%20B%20--%3E%7CYes%7C%20C%5BGreat%5D%0A%20%20%20%20B%20--%3E%7CNo%7C%20D%5BDebug%5D%0A%20%20%20%20C%20--%3E%20E%5BEnd%5D%0A%20%20%20%20D%20--%3E%20E)
 
 ---
 

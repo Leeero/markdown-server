@@ -4,12 +4,60 @@ Markdown-server 提供了Markdown的数学公式 `LaTex`、流程图 `yUML` 以�
 
 ## 如何使用
 
+### 本地运行
+
 - clone 本项目
     - `git clone https://github.com/sbfkcel/markdown-server`
 - 安装依赖
     - `npm install` 或 `yarn`
 - 启动服务
     - `node index.js`
+
+### Docker 运行
+
+#### 1. 构建镜像
+
+```bash
+docker build -t markdown-server .
+```
+
+#### 2. 运行容器
+
+```bash
+docker run -d -p 8001:8001 --name markdown-server markdown-server
+```
+
+#### 3. 查看运行状态
+
+```bash
+docker ps
+```
+
+#### 4. 查看日志
+
+```bash
+docker logs markdown-server
+```
+
+#### 5. 停止和删除容器
+
+```bash
+# 停止容器
+docker stop markdown-server
+
+# 删除容器
+docker rm markdown-server
+```
+
+#### 使用自定义端口
+
+如果需要使用其他端口（例如 3000），可以修改映射端口：
+
+```bash
+docker run -d -p 3000:8001 --name markdown-server markdown-server
+```
+
+此时服务将在主机的 3000 端口上运行。
 
 ## 查看服务
 

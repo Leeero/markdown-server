@@ -1,14 +1,16 @@
-FROM node:8
+FROM node:18-slim
 
 WORKDIR /usr/src/app
 
-ADD https://github.com/sbfkcel/markdown-server/archive/refs/heads/master.zip /usr/src/app/
+# 复制 package 文件
+COPY package.json yarn.lock ./
 
-RUN unzip master.zip
+# 安装依赖
+RUN npm install -g yarn && \
+    yarn install --frozen-lockfile
 
-WORKDIR /usr/src/app/markdown-server-master
-
-RUN npm install
+# 复制应用文件
+COPY index.js ./
 
 EXPOSE 8001
 

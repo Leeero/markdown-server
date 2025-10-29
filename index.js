@@ -69,9 +69,21 @@ const app = http.createServer((req,res)=>{
                 return errFn('Failed to write temporary Mermaid file.', 500);
             }
 
-            const command = `"${mmdcPath}" -i "${tempInputFile}" -o "${tempOutputFile}" -t "${mermaidTheme}" -b transparent`;
+            // 创建 Puppeteer 配置文件路径
+            const puppeteerConfigPath = path.join(__dirname, 'puppeteer.config.json');
+            
+            // 使用 Puppeteer 配置文件（如果存在），否则使用环境变量
+            const command = fs.existsSync(puppeteerConfigPath)
+                ? `"${mmdcPath}" -i "${tempInputFile}" -o "${tempOutputFile}" -t "${mermaidTheme}" -b transparent -p "${puppeteerConfigPath}"`
+                : `"${mmdcPath}" -i "${tempInputFile}" -o "${tempOutputFile}" -t "${mermaidTheme}" -b transparent`;
 
-            exec(command, (error, stdout, stderr) => {
+            // 设置 Puppeteer/Chromium 环境变量，支持在 Docker 中以 root 运行
+            const env = {
+                ...process.env,
+                PUPPETEER_ARGS: '--no-sandbox --disable-setuid-sandbox'
+            };
+
+            exec(command, { env }, (error, stdout, stderr) => {
                  // 清理临时输入文件
                 fs.unlink(tempInputFile, (unlinkErr) => {
                     if (unlinkErr) console.error("Error deleting temp input file:", tempInputFile, unlinkErr);

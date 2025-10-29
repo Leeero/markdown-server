@@ -55,6 +55,10 @@ RUN yarn install --frozen-lockfile
 
 # 复制应用文件
 COPY index.js ./
+COPY puppeteer.config.json ./
+
+# 设置 Puppeteer 环境变量，支持在 Docker 中以 root 运行
+ENV PUPPETEER_ARGS="--no-sandbox --disable-setuid-sandbox"
 
 EXPOSE 8001
 
